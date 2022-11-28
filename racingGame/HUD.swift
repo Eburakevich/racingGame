@@ -13,12 +13,15 @@ enum HUDSettings {
     static let highScore = "Higscore:"
     static let tapToStart = "Tap To Start"
     static let gameOver = "Game Over"
+    
+    static let pause = "Pause"
 }
 
 class HUD: SKNode {
     
     var scoreLabel: SKLabelNode!
     var higshscoreLabel: SKLabelNode!
+    var pauseLabel: SKLabelNode!
   
     
     override init() {
@@ -36,10 +39,10 @@ class HUD: SKNode {
         label.fontSize = fontSize
         label.position = pos
         label.zPosition = 50.0
-    
-
         addChild(label)
     }
+    
+    
     func setupScoreLabel(_ score: Int) {
         guard let scene = scene as? GameScene else { return }
         let pos = CGPoint(x: scene.frame.midX + scene.frame.width/48, y: scene.frame.midY + scene.frame.height/4)
@@ -56,6 +59,16 @@ class HUD: SKNode {
         higshscoreLabel.horizontalAlignmentMode = .left
         higshscoreLabel.verticalAlignmentMode = .top
     }
+    
+    func setupPauseLabel(_ pause: Int) {
+        guard let scene = scene as? GameScene else { return }
+        let pos = CGPoint(x: scene.frame.midX + scene.frame.width/48, y: scene.frame.midY + scene.frame.height/4 - 80 - 80)
+        addLabel(HUDSettings.pause, text: "Pause", fontSize: 70.0, pos: pos)
+        pauseLabel = childNode(withName: HUDSettings.pause) as? SKLabelNode
+        pauseLabel.horizontalAlignmentMode = .left
+        pauseLabel.verticalAlignmentMode = .top
+    }
+    
     func addLabel(fontSize: CGFloat, name: String, text: String) {
         guard let scene = scene as? GameScene else { return }
         let pos = CGPoint(x: scene.frame.width/2.0, y: scene.frame.height/2.0 + 100.0)
