@@ -2,7 +2,7 @@
 //  Types.swift
 //  racingGame
 //
-//  Created by Евгений Буракевич on 21.08.22.
+//  Created by Evgeny Burakevich on 21.08.22.
 //
 
 import Foundation

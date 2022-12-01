@@ -2,7 +2,7 @@
 //  HUD.swift
 //  racingGame
 //
-//  Created by Евгений Буракевич on 21.08.22.
+//  Created by Evgeny Burakevich on 21.08.22.
 //
 
 import SpriteKit
@@ -11,9 +11,8 @@ enum HUDSettings {
     
     static let score = "Score:"
     static let highScore = "Higscore:"
-    static let tapToStart = "Tap To Start"
+    static let tapToStart = "Tap To Start \nDouble Tap To Pause"
     static let gameOver = "Game Over"
-    
     static let pause = "Pause"
 }
 
@@ -22,8 +21,6 @@ class HUD: SKNode {
     var scoreLabel: SKLabelNode!
     var higshscoreLabel: SKLabelNode!
     var pauseLabel: SKLabelNode!
-  
-    
     override init() {
         super.init()
     }
@@ -34,14 +31,16 @@ class HUD: SKNode {
     
     func addLabel(_ name: String, text: String, fontSize: CGFloat, pos: CGPoint) {
         let label = SKLabelNode()
+        label.horizontalAlignmentMode = .center
+        label.numberOfLines = 0
         label.name = name
         label.text = text
         label.fontSize = fontSize
         label.position = pos
         label.zPosition = 50.0
+        label.fontColor = .black
         addChild(label)
     }
-    
     
     func setupScoreLabel(_ score: Int) {
         guard let scene = scene as? GameScene else { return }
@@ -81,9 +80,9 @@ class HUD: SKNode {
     func updateUI(gameState: GameState) {
         switch gameState {
         case .start:
-            addLabel(fontSize: 150.0, name: HUDSettings.tapToStart, text: HUDSettings.tapToStart)
+            addLabel(fontSize: 100.0, name: HUDSettings.tapToStart, text: HUDSettings.tapToStart)
         case .dead:
-            addLabel(fontSize: 200.0, name: HUDSettings.gameOver, text: HUDSettings.gameOver)
+            addLabel(fontSize: 150.0, name: HUDSettings.gameOver, text: HUDSettings.gameOver)
         default: break
         }
     }

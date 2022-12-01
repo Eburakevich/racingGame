@@ -2,13 +2,12 @@
 //  Ground.swift
 //  racingGame
 //
-//  Created by Евгений Буракевич on 21.08.22.
+//  Created by Evgeny Burakevich on 21.08.22.
 //
 
 import SpriteKit
 class Ground: SKSpriteNode {
     
-//
     init() {
         let texture = SKTexture(imageNamed: "ground")
         super.init(texture: texture, color: .clear, size: texture.size())
@@ -27,8 +26,6 @@ extension Ground {
         for i in 0...2 {
             let ground = Ground()
             ground.position = CGPoint(x: scene.frame.size.width/2.0, y: CGFloat(i)*ground.frame.size.height)
-            
-           
             scene.addChild(ground)
         }
     }
@@ -37,7 +34,6 @@ extension Ground {
         scene.enumerateChildNodes(withName: "ground") { (node, _) in
             let node = node as! SKSpriteNode
             node.position.y -= scene.moveSpeed
-            
             if node.position.y < -scene.frame.height {
                 node.position.y += scene.frame.height*2.0
             }
