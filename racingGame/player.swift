@@ -31,7 +31,7 @@ class Player: SKSpriteNode {
 extension Player {
     func setupPlayer(_ ground: Ground, scene: SKScene) {
         position = CGPoint(x: (scene.frame.width + ground.frame.width + frame.width)/1.65, y: scene.frame.height/4.0)
-        scene.addChild(self)t
+        scene.addChild(self)
     }
     
     func setupMoveSide() {
